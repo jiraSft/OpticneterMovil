@@ -81,9 +81,6 @@ import {IonContent,IonPage,IonInput,IonButton,IonLabel,IonItem,IonIcon,IonToast,
       }
     };
 
-
-
-
     return (
       <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
