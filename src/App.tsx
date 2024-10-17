@@ -42,6 +42,8 @@ import IniciaSesion from './pages/IniciaSesión';
 import AgendaCita from './pages/AgendaCita';
 import Carrito from './pages/Carrito';
 import Productos from './pages/Productos';
+
+import HomeAuth from './pages/Auth/Home'
 setupIonicReact();
 
 const App: React.FC = () => (
@@ -55,6 +57,7 @@ const App: React.FC = () => (
         <Route path="/AgendaCita" component={AgendaCita} exact />        
         <Route path="/Productos" component={Productos} exact />
         <Route path="/Carrito" component={Carrito} exact />
+        <Route path="/HomeAuth" component={HomeAuth} exact />
         <Redirect exact from='/' to="/Home" />
       </IonRouterOutlet>
      
