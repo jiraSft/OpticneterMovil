@@ -51,11 +51,10 @@ import {IonContent,IonPage,IonInput,IonButton,IonLabel,IonItem,IonIcon,IonToast,
             const responseData = await response.json();
             const receivedToken = responseData.token;
             setToken(receivedToken);
-            toast.success('Inicio de sesión exitoso');
             localStorage.setItem('token', receivedToken);
             login();
+            toast.success('Inicio de sesión exitoso');
             setUsuarioLogueado(true);
-          
             setTimeout(() => {
               window.location.href = '/HomeAuth';
             }, 4000);

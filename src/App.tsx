@@ -43,7 +43,10 @@ import AgendaCita from './pages/AgendaCita';
 import Carrito from './pages/Carrito';
 import Productos from './pages/Productos';
 
+import RutaProtegida from './pages/RutaProtegida';
 import HomeAuth from './pages/Auth/Home'
+
+
 setupIonicReact();
 
 const App: React.FC = () => (
@@ -52,16 +55,20 @@ const App: React.FC = () => (
       <IonSplitPane contentId='main-content'>
         <Menu />
       <IonRouterOutlet id='main-content'>
+        <Redirect exact from='/' to="/Home" />
         <Route path="/Home" component={Home} exact />
         <Route path="/IniciaSesion" component={IniciaSesion} exact />
-        <Route path="/AgendaCita" component={AgendaCita} exact />        
         <Route path="/Productos" component={Productos} exact />
-        <Route path="/Carrito" component={Carrito} exact />
-        <Route path="/HomeAuth" component={HomeAuth} exact />
+        
+        
       
       {/**Rutas Protegidas */}
-      
-        <Redirect exact from='/' to="/Home" />
+        <Route path="/AgendaCita" render={() => <RutaProtegida element={<AgendaCita />} />} />
+        <Route path="/Carrito" render={() => <RutaProtegida element={<Carrito />} />} />
+        <Route path="/HomeAuth" component={HomeAuth} exact />
+
+
+        
       </IonRouterOutlet>
      
       </IonSplitPane>

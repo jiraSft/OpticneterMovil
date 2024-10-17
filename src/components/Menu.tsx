@@ -24,12 +24,12 @@ const Menu: React.FC = () => {
                 </IonItem>
             </IonMenuToggle>
             <IonMenuToggle>
-                <IonItem button routerLink="/IniciaSesion">
+                <IonItem button routerLink="/AgendaCita">
                 <IonLabel>Agendar Cita</IonLabel>
                 </IonItem>
             </IonMenuToggle>
             <IonMenuToggle>
-                <IonItem button routerLink="/IniciaSesion">
+                <IonItem button routerLink="/Carrito">
                 <IonLabel>Mi carrito</IonLabel>
                 </IonItem>
             </IonMenuToggle>

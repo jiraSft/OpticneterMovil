@@ -15,7 +15,9 @@ interface AuthProviderProps {
 
 // Proveedor del contexto
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    return !!localStorage.getItem('token'); // Verifica si hay un token en localStorage
+  });
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
 
@@ -27,6 +29,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const logout = () => {
     setIsAuthenticated(false);
+    localStorage.removeItem('token'); // Elimina el token al cerrar sesión
     setToastMessage("Sesión cerrada correctamente");
     setShowToast(true);
   };
