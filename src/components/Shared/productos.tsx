@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { IonContent, IonToast, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonImg, IonLoading } from "@ionic/react";
+import { IonContent, IonToast, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonImg, IonLoading, IonButton } from "@ionic/react";
 
 interface Producto {
   IdProducto: number;
@@ -34,7 +34,6 @@ const ProductosVista: React.FC = () => {
             'Content-Type': 'application/json',
           },
         });
-    
         if (!response.ok) {
           throw new Error("Error al obtener los productos");
         }
@@ -71,22 +70,23 @@ const ProductosVista: React.FC = () => {
 
       <h1 className="text-2xl font-bold text-center mb-3">Productos</h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1">
+      <div className="grid grid-cols-2 sm:grid-cols-1 md:grid-cols-1">
         {productos.map((producto) => (
-          <IonCard key={producto.IdProducto} className="w-full">
-            <IonImg src={producto.vchNomImagen} alt={producto.vchNombreProducto} />
-            <IonCardHeader>
-              <IonCardTitle>{producto.vchNombreProducto}</IonCardTitle>
+          <IonCard key={producto.IdProducto} className="w-auto mx-4 my-2 p-4 items-center justify-center">
+            <IonImg className=" mx-auto" src={producto.vchNomImagen} alt={producto.vchNombreProducto} />
+            <IonCardHeader className="text-center">
+              <IonCardTitle className="font-bold">{producto.vchNombreProducto}</IonCardTitle>
               <IonCardSubtitle>
                 {categorias[producto.IdCategoria] || "Sin categoría"} - {marcas[producto.IdMarca] || "Sin marca"}
               </IonCardSubtitle>
             </IonCardHeader>
             <IonCardContent>
-              <p>{producto.vchDescripcion}</p>
-              <p>Existencias: {producto.Existencias}</p>
-              <p>Precio: {producto.Precio}</p>
+            {/**  <p>{producto.vchDescripcion}</p>   */} 
+             {/** <p>Existencias: {producto.Existencias}</p>  */} 
+           {/**   <p>Precio: {producto.Precio}</p>  */} 
               <div className="flex justify-between mt-4">
                 {/* Botones para realizar acciones, ir a detalles, etc. */}
+                <IonButton routerLink="/IniciaSesion" className=""> Detalles</IonButton>
               </div>
             </IonCardContent>
           </IonCard>

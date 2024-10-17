@@ -58,6 +58,9 @@ const App: React.FC = () => (
         <Route path="/Productos" component={Productos} exact />
         <Route path="/Carrito" component={Carrito} exact />
         <Route path="/HomeAuth" component={HomeAuth} exact />
+      
+      {/**Rutas Protegidas */}
+      
         <Redirect exact from='/' to="/Home" />
       </IonRouterOutlet>
      
