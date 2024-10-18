@@ -13,7 +13,6 @@ const Productos: React.FC = () =>{
 
         </IonContent>
 
-        <Footer />
         </IonPage>
 
     );

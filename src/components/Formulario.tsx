@@ -40,7 +40,7 @@ import {IonContent,IonPage,IonInput,IonButton,IonLabel,IonItem,IonIcon,IonToast,
       if (captcha.current?.getValue()) {
         console.log('El usuario no es un robot iniciando sesion');
         try {
-          const response = await fetch('https://cca7-200-68-173-40.ngrok-free.app/auth/login', {
+          const response = await fetch('http://localhost:3000/auth/login', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -57,7 +57,7 @@ import {IonContent,IonPage,IonInput,IonButton,IonLabel,IonItem,IonIcon,IonToast,
             setUsuarioLogueado(true);
             setTimeout(() => {
               window.location.href = '/HomeAuth';
-            }, 4000);
+            }, 2000);
           } else {
             console.error('Error de inicio de sesión:', response.status); 
             setIntentosFallidos(intentosFallidos + 1);
@@ -73,7 +73,7 @@ import {IonContent,IonPage,IonInput,IonButton,IonLabel,IonItem,IonIcon,IonToast,
             toast.error('Error de red, intente más tarde');
             setTimeout(() => {
               window.location.href = '/500';
-            }, 4000);
+            }, 5000);
           }
       } else {
         toast.error('Por favor acepta el captcha');
@@ -172,13 +172,12 @@ import {IonContent,IonPage,IonInput,IonButton,IonLabel,IonItem,IonIcon,IonToast,
           <div className="ion-text-center ion-margin-top">
             <p>
               ¿No tienes una cuenta?{' '}
-              <Link to="/RegistroPage">Regístrate gratis</Link>
+              <Link to="/RegistroU">Regístrate gratis</Link>
             </p>
           </div>
         </div>
       </div>
     );
-    
   };
   
   export default Login;

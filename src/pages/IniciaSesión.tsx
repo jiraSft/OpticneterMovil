@@ -16,7 +16,6 @@ const IniciaSesion: React.FC = () =>{
            
         </IonContent>
 
-        <Footer />
     </IonPage>
     );
 }

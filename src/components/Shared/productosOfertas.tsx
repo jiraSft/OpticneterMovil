@@ -18,7 +18,7 @@ interface Producto {
   };
 }
 
-const ProductosVista: React.FC = () => {
+const ProductosOfertas: React.FC = () => {
   const [productos, setProductos] = useState<Producto[]>([]);
   const [categorias, setCategorias] = useState<{ [key: number]: string }>({});
   const [marcas, setMarcas] = useState<{ [key: number]: string }>({});
@@ -28,7 +28,7 @@ const ProductosVista: React.FC = () => {
   useEffect(() => {
     const fetchProductos = async () => {
       try {
-        const response = await fetch("http://localhost:3000/productos/Productos", {
+        const response = await fetch("http://localhost:3000/productos/ProductosOfertas", {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ const ProductosVista: React.FC = () => {
         }
   
         const data: Producto[] = await response.json();
-        console.log(data); // Verifica la estructura de la respuesta
+        console.log(data);
   
         const categoriasMap: { [key: number]: string } = {};
         const marcasMap: { [key: number]: string } = {};
@@ -65,19 +65,17 @@ const ProductosVista: React.FC = () => {
   
 
   return (
-    <IonContent className="p-3">
-      {loading && <IonLoading isOpen={loading} message={"Cargando productos..."} />}
+    <>
+    {/** {loading && <IonLoading isOpen={loading} message={"Cargando productos..."} />}
       {error && <IonToast isOpen={true} message={error} duration={3000} color="danger" />}
-
-      <h1 className="text-2xl font-bold text-center mb-3">Productos</h1>
-
+ */} 
       <div className="grid grid-cols-2 sm:grid-cols-1 md:grid-cols-1">
         {productos.map((producto) => (
           <IonCard key={producto.IdProducto} className="w-auto mx-4 my-2 p-4 items-center justify-center">
-            <IonImg className=" mx-auto" src={producto.vchNomImagen} alt={producto.vchNombreProducto} />
+            <IonImg className=" mx-7 h-32" src={producto.vchNomImagen} alt={producto.vchNombreProducto} />
             <IonCardHeader className="text-center">
               <IonCardTitle className="font-bold">{producto.vchNombreProducto}</IonCardTitle>
-              <IonCardSubtitle>
+              <IonCardSubtitle className="font-bold"> 
                 {categorias[producto.IdCategoria] || "Sin categoría"} - {marcas[producto.IdMarca] || "Sin marca"}
               </IonCardSubtitle>
             </IonCardHeader>
@@ -87,14 +85,14 @@ const ProductosVista: React.FC = () => {
            {/**   <p>Precio: {producto.Precio}</p>  */} 
               <div className="flex justify-between mt-4">
                 {/* Botones para realizar acciones, ir a detalles, etc. */}
-                <IonButton routerLink="/IniciaSesion" className=""> Detalles</IonButton>
+                <IonButton routerLink="/IniciaSesion" style={{ backgroundColor: 'red', color: 'white' }} className=" hover:bg-red-600">Oferta</IonButton>
               </div>
             </IonCardContent>
           </IonCard>
         ))}
       </div>
-    </IonContent>
+    </>
   );
 };
 
-export default ProductosVista;
+export default ProductosOfertas;

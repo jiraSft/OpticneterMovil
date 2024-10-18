@@ -42,9 +42,11 @@ import IniciaSesion from './pages/IniciaSesión';
 import AgendaCita from './pages/AgendaCita';
 import Carrito from './pages/Carrito';
 import Productos from './pages/Productos';
+import RegistroU from './pages/RegistroU';
 
 import RutaProtegida from './pages/RutaProtegida';
 import HomeAuth from './pages/Auth/Home'
+
 
 
 setupIonicReact();
@@ -59,13 +61,13 @@ const App: React.FC = () => (
         <Route path="/Home" component={Home} exact />
         <Route path="/IniciaSesion" component={IniciaSesion} exact />
         <Route path="/Productos" component={Productos} exact />
-        
+        <Route path="/RegistroU" component={RegistroU} exact /> 
         
       
       {/**Rutas Protegidas */}
         <Route path="/AgendaCita" render={() => <RutaProtegida element={<AgendaCita />} />} />
         <Route path="/Carrito" render={() => <RutaProtegida element={<Carrito />} />} />
-        <Route path="/HomeAuth" component={HomeAuth} exact />
+        <Route path="/HomeAuth" render={() => <RutaProtegida element={<HomeAuth />} />} />
 
 
         

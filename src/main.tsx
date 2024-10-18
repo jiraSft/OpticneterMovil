@@ -1,13 +1,19 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import App from './App';
 import { AuthProvider } from './pages/Auth'; // Importa el AuthProvider
 
-ReactDOM.render(
-  <React.StrictMode>
-    <AuthProvider>
-      <App />
-    </AuthProvider>
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+// Obtén el elemento contenedor en el cual se montará la aplicación
+const container = document.getElementById('root');
+
+// Verifica que el contenedor no sea nulo y crea la raíz usando createRoot
+if (container) {
+  const root = createRoot(container);
+  root.render(
+    <React.StrictMode>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </React.StrictMode>
+  );
+}

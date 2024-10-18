@@ -4,6 +4,7 @@ import ExploreContainer from '../components/ExploreContainer';
 import Footer from '../components/Footer';
 import Header from '../components/UI/header';
 import ImageCarousel from '../components/UI/carrucel';
+import ProductosOfertas from '../components/Shared/productosOfertas';
 
 const Home: React.FC = () => {
   return (
@@ -15,11 +16,10 @@ const Home: React.FC = () => {
          
           <ImageCarousel />
           
-          <ExploreContainer />
+        <ProductosOfertas />
           
         </IonContent>
-
-        <Footer />
+        
 
       </IonPage>
   );
