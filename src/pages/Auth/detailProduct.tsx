@@ -12,7 +12,7 @@ const DetalleProducto: React.FC = () => {
   React.useEffect(() => {
     const fetchProducto = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/productos/Productos/${id}`,{
+        const response = await fetch(`https://a614-189-240-192-130.ngrok-free.app/productos/Productos/${id}`,{
           headers: {
             'ngrok-skip-browser-warning': 'true',
             'Content-Type': 'application/json',

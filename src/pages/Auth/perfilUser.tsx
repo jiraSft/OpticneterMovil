@@ -79,7 +79,7 @@ const ProfileCard: React.FC = () => {
     }
 
     try {
-      await fetch(`http://localhost:3000/clientes/ids/${decodedToken.clienteId}`, {
+      await fetch(`https://a614-189-240-192-130.ngrok-free.app/clientes/ids/${decodedToken.clienteId}`, {
         method: "PUT",
         headers: {
           'ngrok-skip-browser-warning': 'true',

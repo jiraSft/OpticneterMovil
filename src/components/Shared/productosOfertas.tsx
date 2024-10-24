@@ -30,7 +30,7 @@ const ProductosOfertas: React.FC = () => {
   useEffect(() => {
     const fetchProductos = async () => {
       try {
-        const api = "http://localhost:3000/productos/ProductosOfertas";
+        const api = "https://a614-189-240-192-130.ngrok-free.app/productos/ProductosOfertas";
         const response = await fetch(api, {
           headers: {
             'ngrok-skip-browser-warning': 'true', // Este es la linea que evita la advertencia de ngrok
