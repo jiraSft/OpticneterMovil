@@ -6,7 +6,7 @@ import {IonContent,IonPage,IonInput,IonButton,IonLabel,IonItem,IonIcon,IonToast,
   import { toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
   import ReCAPTCHA from 'react-google-recaptcha';
-  import { AuthContext } from '../pages/Auth';
+  import { AuthContext } from '../contexts/Auth';
   
   const Login = () => {
     const [mostrarContra, setMostrarContra] = useState(false);
@@ -40,7 +40,7 @@ import {IonContent,IonPage,IonInput,IonButton,IonLabel,IonItem,IonIcon,IonToast,
       if (captcha.current?.getValue()) {
         console.log('El usuario no es un robot iniciando sesion');
         try {
-          const response = await fetch('http://localhost:3000/auth/login', {
+          const response = await fetch('https://a614-189-240-192-130.ngrok-free.app/auth/login', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

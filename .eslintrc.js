@@ -13,5 +13,14 @@ module.exports = {
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    
+    'no-restricted-globals': [
+      'error',
+      {
+        name: 'location',
+        message: 'Don’t use location in production code.',
+        except: process.env.NODE_ENV !== 'production' ? ['ngrok.io'] : [],
+      },
+    ],
   }
 }

@@ -1,0 +1,48 @@
+/* Carrusel general */
+.mySwiper {
+    width: 100%;  /* Hace que el carrusel ocupe todo el ancho */
+    height: 300px;  /* Altura del carrusel */
+    border-radius: 10px; /* Bordes redondeados */
+    overflow: hidden; /* Asegura que no se desborden las imágenes */
+  }
+  
+  /* Imágenes del carrusel */
+  .mySwiper img {
+    width: 100%; /* Hace que la imagen ocupe todo el ancho disponible */
+    height: 100%; /* Hace que la imagen ocupe todo el alto del contenedor */
+    object-fit: cover; /* Ajusta la imagen sin perder proporciones, recorta si es necesario */
+    border-radius: 10px; /* Bordes redondeados en cada imagen */
+  }
+  
+  /* Paginación (los puntos debajo del carrusel) */
+  .swiper-pagination-bullet {
+    background-color: rgba(255, 255, 255, 0.5); /* Color por defecto de los puntos */
+    width: 12px;
+    height: 12px;
+    margin: 0 5px; /* Espaciado entre los puntos */
+  }
+  
+  .swiper-pagination-bullet-active {
+    background-color: #007bff; /* Cambia el color del punto activo */
+  }
+  
+  /* Navegación (botones de siguiente y anterior) */
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: #007bff; /* Cambia el color de los botones de navegación */
+    font-size: 20px;
+    top: 50%; /* Centra los botones verticalmente */
+    transform: translateY(-50%);
+    z-index: 10; /* Asegura que se superpongan a las imágenes */
+  }
+  
+  .swiper-button-next:hover,
+  .swiper-button-prev:hover {
+    color: #0056b3; /* Color al pasar el mouse por los botones */
+  }
+  
+  /* Opcional: sombras en las imágenes para un efecto más visual */
+  .mySwiper img {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Añade una sombra ligera */
+  }
+  

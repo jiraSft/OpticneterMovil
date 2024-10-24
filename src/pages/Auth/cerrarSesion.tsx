@@ -1,9 +1,9 @@
 import { IonButton } from '@ionic/react';
 import React, { useContext } from 'react'
-import { AuthContext } from '../Auth';
+import { useAuth } from '../../contexts/Auth'; 
 
 const CerrarSesion: React.FC = () => {
-    const {logout} = useContext(AuthContext);
+    const { logout } = useAuth();
 
     const handleLogout = () => {
         logout();

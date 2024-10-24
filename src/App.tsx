@@ -46,6 +46,8 @@ import RegistroU from './pages/RegistroU';
 
 import RutaProtegida from './pages/RutaProtegida';
 import HomeAuth from './pages/Auth/Home'
+import DetalleProducto from './pages/Auth/detailProduct';
+import ProfileCard from './pages/Auth/perfilUser';
 
 
 
@@ -62,14 +64,15 @@ const App: React.FC = () => (
         <Route path="/IniciaSesion" component={IniciaSesion} exact />
         <Route path="/Productos" component={Productos} exact />
         <Route path="/RegistroU" component={RegistroU} exact /> 
-        
-      
+    {/**   <Route path="/Productos/:id" component={DetalleProducto} />  */}  
+
       {/**Rutas Protegidas */}
         <Route path="/AgendaCita" render={() => <RutaProtegida element={<AgendaCita />} />} />
         <Route path="/Carrito" render={() => <RutaProtegida element={<Carrito />} />} />
         <Route path="/HomeAuth" render={() => <RutaProtegida element={<HomeAuth />} />} />
+        <Route path="/Perfil" render={() => <RutaProtegida element={<ProfileCard />} />} />
 
-
+        <Route path="/Productos/:id" render={() => <RutaProtegida element={<DetalleProducto />} />} />
         
       </IonRouterOutlet>
      

@@ -1,6 +1,6 @@
 import React from "react";
 import { Redirect } from "react-router-dom"; 
-import { useAuth } from "./Auth"; 
+import { useAuth } from "../contexts/Auth"; 
 
 interface RutaProtegidaProps {
   element: React.ReactNode; 
