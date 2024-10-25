@@ -48,6 +48,7 @@ import RutaProtegida from './pages/RutaProtegida';
 import HomeAuth from './pages/Auth/Home'
 import DetalleProducto from './pages/Auth/detailProduct';
 import ProfileCard from './pages/Auth/perfilUser';
+import React from 'react';
 
 
 

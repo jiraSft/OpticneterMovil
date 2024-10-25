@@ -7,6 +7,7 @@ import {IonContent,IonPage,IonInput,IonButton,IonLabel,IonItem,IonIcon,IonToast,
   import 'react-toastify/dist/ReactToastify.css';
   import ReCAPTCHA from 'react-google-recaptcha';
   import { AuthContext } from '../contexts/Auth';
+import React from 'react';
   
   const Login = () => {
     const [mostrarContra, setMostrarContra] = useState(false);
@@ -40,7 +41,7 @@ import {IonContent,IonPage,IonInput,IonButton,IonLabel,IonItem,IonIcon,IonToast,
       if (captcha.current?.getValue()) {
         console.log('El usuario no es un robot iniciando sesion');
         try {
-          const response = await fetch('https://a614-189-240-192-130.ngrok-free.app/auth/login', {
+          const response = await fetch('https://backopt-production.up.railway.app/auth/login', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -85,11 +86,13 @@ import {IonContent,IonPage,IonInput,IonButton,IonLabel,IonItem,IonIcon,IonToast,
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <h3 className="text-center font-bold">Iniciar Sesión</h3>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="">
+            <div>
               <IonLabel className="block text-sm font-bold leading-6 text-gray-900">Correo</IonLabel>
-              <div className="mt-2">
+              <div className="mt-2" >
                 <IonInput
+                data-testid="email-input"
                   type="email"
+                  id="email"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   {...register('vchCorreo', {
                     required: 'El campo es requerido',
@@ -115,6 +118,7 @@ import {IonContent,IonPage,IonInput,IonButton,IonLabel,IonItem,IonIcon,IonToast,
               <div className="flex items-center mt-2">
                 <IonInput
                   type={mostrarContra ? 'text' : 'password'}
+                  data-testid="password-input"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   {...register('vchPassword', {
                     required: 'El campo es requerido',
@@ -145,6 +149,7 @@ import {IonContent,IonPage,IonInput,IonButton,IonLabel,IonItem,IonIcon,IonToast,
     
             <div className="flex justify-center items-center recaptcha">
               <ReCAPTCHA
+                data-testid="recaptcha"
                 ref={captcha}
                 sitekey="6LfZCW4pAAAAANILT3VzQtWcH_w6JIX1hzNyOBeF"
                 onChange={onChange}
@@ -154,6 +159,7 @@ import {IonContent,IonPage,IonInput,IonButton,IonLabel,IonItem,IonIcon,IonToast,
             <IonButton
               expand="block"
               type="submit"
+              data-testid="submit-button"
               className="ion-margin-top"
               disabled={intentosFallidos >= 3}
             >

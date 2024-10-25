@@ -28,13 +28,8 @@ const ProductosVista: React.FC = () => {
   useEffect(() => {
     const fetchProductos = async () => {
       try {
-        const api = "https://a614-189-240-192-130.ngrok-free.app/productos/Productos";
-        const response = await fetch(api, {
-          headers: {
-            'ngrok-skip-browser-warning': 'true',
-            'Content-Type': 'application/json',
-          },
-        });
+        const api = "https://backopt-production.up.railway.app/productos/Productos";
+        const response = await fetch(api, {});
     
         if (!response.ok) {
           throw new Error("Error al obtener los productos");

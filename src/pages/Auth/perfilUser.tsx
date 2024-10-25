@@ -44,11 +44,7 @@ const ProfileCard: React.FC = () => {
   useEffect(() => {
     const fetchProfileData = async (clienteId: string) => {
       try {
-        const response = await fetch(`https://a614-189-240-192-130.ngrok-free.app/clientes/id/${clienteId}`,{
-            headers:{
-                'ngrok-skip-browser-warning': 'true'
-            },
-        });
+        const response = await fetch(`https://backopt-production.up.railway.app/clientes/id/${clienteId}`,{ });
         const data = await response.json();
         setProfileData(data);
       } catch (error) {
@@ -79,12 +75,8 @@ const ProfileCard: React.FC = () => {
     }
 
     try {
-      await fetch(`https://a614-189-240-192-130.ngrok-free.app/clientes/ids/${decodedToken.clienteId}`, {
+      await fetch(`https://backopt-production.up.railway.app/clientes/ids/${decodedToken.clienteId}`, {
         method: "PUT",
-        headers: {
-          'ngrok-skip-browser-warning': 'true',
-          "Content-Type": "application/json",
-        },
         body: JSON.stringify({
           vchNomCliente: editedData.vchNomCliente,
           vchAPaterno: editedData.vchAPaterno,

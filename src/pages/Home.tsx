@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonContent, IonHeader,IonPage, IonTitle, IonToolbar, IonSplitPane, IonMenuButton, IonSearchbar, IonImg } from '@ionic/react';
+import { IonContent, IonHeader,IonPage, IonTitle, IonToolbar, IonSplitPane, IonMenuButton, IonSearchbar, IonImg, IonCard, IonLabel, IonButton, IonRouterLink, IonList, IonItem } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import Footer from '../components/Footer';
 import Header from '../components/UI/header';
@@ -9,15 +9,37 @@ import ProductosOfertas from '../components/Shared/productosOfertas';
 const Home: React.FC = () => {
   return (
       <IonPage id="main-content"> 
-       
+
        <Header />
 
-        <IonContent className="">
+        <IonContent>
          
           <ImageCarousel />
-          
-        <ProductosOfertas />
-          
+          <IonCard >
+            <IonLabel>
+              <h2 className="font-bold text-center text-black text-2xl">¡Crea una cuenta y mejora tu experiencia!</h2>
+              <IonButton className='items-center justify-center flex p-4' routerLink='/Crearcuenta'>Crear cuenta</IonButton>
+                <IonRouterLink routerLink="/IniciaSesion">
+                  <h2 className="text-blue-500 text-center p-2 ">Ingresar a mi cuenta</h2>
+                </IonRouterLink>
+            </IonLabel>
+          </IonCard>
+          <ProductosOfertas />
+          <IonCard className='p-2'>
+            <IonLabel>
+              <h2 className="font-bold text-black text-2xl">¿Necesitas ayuda?</h2>
+            </IonLabel>
+            <IonList>
+              <IonItem>
+                <IonRouterLink>
+                <IonLabel className='text-black'>Terminos y condiciones</IonLabel>
+                </IonRouterLink>
+              </IonItem>
+              <IonItem>
+                <IonLabel>Conocer más</IonLabel>
+              </IonItem>
+            </IonList>
+          </IonCard>
         </IonContent>
         
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import {IonContent, IonToast,IonCard,IonCardHeader,IonCardTitle,IonCardSubtitle,IonCardContent,IonImg,IonLoading,IonButton,} from "@ionic/react";
+import {IonContent, IonToast,IonCard,IonCardHeader,IonCardTitle,IonCardSubtitle,IonCardContent,IonImg,IonLoading,IonButton, IonList, IonItem, IonLabel,} from "@ionic/react";
 import Header from "../UI/header";
 
 interface Producto {
@@ -12,6 +12,7 @@ interface Producto {
   Precio: number;
   IdCategoria: number;
   IdMarca: number;
+  PrecioOferta: number;
   categoria: {
     NombreCategoria: string;
   };
@@ -30,13 +31,8 @@ const ProductosOfertas: React.FC = () => {
   useEffect(() => {
     const fetchProductos = async () => {
       try {
-        const api = "https://a614-189-240-192-130.ngrok-free.app/productos/ProductosOfertas";
-        const response = await fetch(api, {
-          headers: {
-            'ngrok-skip-browser-warning': 'true', // Este es la linea que evita la advertencia de ngrok
-            'Content-Type': 'application/json',
-          },
-        });
+        const api = "https://backopt-production.up.railway.app/productos/ProductosOfertas";
+        const response = await fetch(api, {});
         const data: Producto[] = await response.json();
         console.log(data);
 
@@ -64,29 +60,29 @@ const ProductosOfertas: React.FC = () => {
 
   return (
     <>
-      
       {loading && <IonLoading isOpen={loading} message={"Cargando productos..."} />}
       {error && <IonToast isOpen={true} message={error} duration={3000} color="danger" />}
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1">
-        {productos.map((producto) => (
-          <IonCard key={producto.IdProducto} className="w-auto mx-4 my-2 p-4 items-center justify-center">
-            <IonImg className="mx-7 h-32" src={producto.vchNomImagen} alt={producto.vchNombreProducto} />
-            <IonCardHeader className="text-center">
-              <IonCardTitle className="font-bold">{producto.vchNombreProducto}</IonCardTitle>
-              <IonCardSubtitle className="font-bold">
-                {categorias[producto.IdCategoria] || "Sin categoría"} - {marcas[producto.IdMarca] || "Sin marca"}
-              </IonCardSubtitle>
-            </IonCardHeader>
-            <IonCardContent>
-              <div className="flex justify-between mt-4">
-                <IonButton routerLink={`/productos/${producto.IdProducto}`} expand="block" color={"danger"}>
-                  Oferta
-                </IonButton>
-              </div>
-            </IonCardContent>
-          </IonCard>
-        ))}
-      </div>
+      <IonCard className="p">
+        <IonList>
+          {productos.map((producto) => (
+            <IonItem key={producto.IdProducto} routerLink={`/productos/${producto.IdProducto}`}>
+              <IonImg
+                className="h-40 w-40 mr-6"
+                src={producto.vchNomImagen}
+                alt={producto.vchNombreProducto}
+              />
+              <IonLabel>
+                <h2>{producto.vchNombreProducto}</h2>
+                <p>
+                  {categorias[producto.IdCategoria] || "Sin categoría"} - {marcas[producto.IdMarca] || "Sin marca"}</p>
+                <p style={{ textDecoration: "line-through", color: "gray" }}>${producto.PrecioOferta}</p>
+                <h3 className="font-bold">${producto.Precio}</h3>
+                <p><span className="text-green-500 font-bold">Envío gratis</span> en la primera compra</p>
+              </IonLabel>
+            </IonItem>
+          ))}
+        </IonList>
+      </IonCard>
     </>
   );
 };

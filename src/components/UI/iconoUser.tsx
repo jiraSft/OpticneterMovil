@@ -35,10 +35,7 @@ const IconoRedondo: React.FC = () => {
       // Llama a la API para obtener los datos del perfil
       const fetchProfileData = async (clienteId: string) => {
         try {
-          const response = await fetch(`https://a614-189-240-192-130.ngrok-free.app/clientes/id/${clienteId}`, {
-            headers: {
-              'ngrok-skip-browser-warning': 'true'
-            },
+          const response = await fetch(`https://backopt-production.up.railway.app/clientes/id/${clienteId}`, {
           });
           const data = await response.json();
           setProfileData(data);

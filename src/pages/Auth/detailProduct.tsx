@@ -12,11 +12,7 @@ const DetalleProducto: React.FC = () => {
   React.useEffect(() => {
     const fetchProducto = async () => {
       try {
-        const response = await fetch(`https://a614-189-240-192-130.ngrok-free.app/productos/Productos/${id}`,{
-          headers: {
-            'ngrok-skip-browser-warning': 'true',
-            'Content-Type': 'application/json',
-          },
+        const response = await fetch(`https://backopt-production.up.railway.app/productos/Productos/${id}`,{
         });
         if (!response.ok) {
           throw new Error("Error al obtener el producto");

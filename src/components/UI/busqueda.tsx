@@ -6,6 +6,7 @@ const Buscar: React.FC = ( ) => {
     return(
         <IonSearchbar
         style={{'--border-radius': '9999px'}as React.CSSProperties}  
+        placeholder="Buscar en Opticenter"
         />
     );
 }
