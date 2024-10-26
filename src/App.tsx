@@ -65,16 +65,14 @@ const App: React.FC = () => (
         <Route path="/IniciaSesion" component={IniciaSesion} exact />
         <Route path="/Productos" component={Productos} exact />
         <Route path="/RegistroU" component={RegistroU} exact /> 
-    {/**   <Route path="/Productos/:id" component={DetalleProducto} />  */}  
+        <Route path="/Productos/:id" component={DetalleProducto} /> 
 
       {/**Rutas Protegidas */}
         <Route path="/AgendaCita" render={() => <RutaProtegida element={<AgendaCita />} />} />
         <Route path="/Carrito" render={() => <RutaProtegida element={<Carrito />} />} />
         <Route path="/HomeAuth" render={() => <RutaProtegida element={<HomeAuth />} />} />
         <Route path="/Perfil" render={() => <RutaProtegida element={<ProfileCard />} />} />
-
-        <Route path="/Productos/:id" render={() => <RutaProtegida element={<DetalleProducto />} />} />
-        
+  
       </IonRouterOutlet>
      
       </IonSplitPane>
