@@ -1,10 +1,14 @@
 import React from 'react';
-import { IonContent, IonHeader,IonPage, IonTitle, IonToolbar, IonSplitPane, IonMenuButton, IonSearchbar, IonImg, IonCard, IonLabel, IonButton, IonRouterLink, IonList, IonItem } from '@ionic/react';
+import { IonContent, IonHeader,IonPage, IonTitle, IonToolbar, IonSplitPane, IonMenuButton, IonSearchbar, IonImg, IonCard, IonLabel, IonButton, IonRouterLink, IonList, IonItem, IonIcon, IonAvatar, IonButtons } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import Footer from '../components/Footer';
 import Header from '../components/UI/header';
 import ImageCarousel from '../components/UI/carrucel';
 import ProductosOfertas from '../components/Shared/productosOfertas';
+import ventas from '../assets/Venta.png';
+import { personCircle, search } from 'ionicons/icons';
+import CategoriasCarrucel from '../components/UI/CategoriasCarrucel';
+import ProductosViewCart from './productosViewCart';
 
 const Home: React.FC = () => {
   return (
@@ -24,7 +28,12 @@ const Home: React.FC = () => {
                 </IonRouterLink>
             </IonLabel>
           </IonCard>
+          
+
+          <CategoriasCarrucel />
+          
           <ProductosOfertas />
+          
           <IonCard className='p-2'>
             <IonLabel>
               <h2 className="font-bold text-black text-2xl">¿Necesitas ayuda?</h2>

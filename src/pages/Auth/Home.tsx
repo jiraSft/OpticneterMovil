@@ -4,7 +4,7 @@ import Header from '../../components/UI/header';
 import CerrarSesion from "./cerrarSesion";
 import ProductosOfertas from "../../components/Shared/productosOfertas";
 import ImageCarousel from "../../components/UI/carrucel";
-
+import CategoriasCarrucel from "../../components/UI/CategoriasCarrucel";
 const HomeAuth: React.FC = ()=> {
     return(
         <IonPage>
@@ -15,7 +15,7 @@ const HomeAuth: React.FC = ()=> {
             <p >Has Iniciado sesion correctamente :)</p>
 
             <CerrarSesion />
-
+            <CategoriasCarrucel />
             <ProductosOfertas />
         </IonContent>
         </IonPage>

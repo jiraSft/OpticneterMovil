@@ -34,7 +34,6 @@ const ProductosOfertas: React.FC = () => {
         const api = "https://backopt-production.up.railway.app/productos/ProductosOfertas";
         const response = await fetch(api, {});
         const data: Producto[] = await response.json();
-        console.log(data);
 
         const categoriasMap: { [key: number]: string } = {};
         const marcasMap: { [key: number]: string } = {};

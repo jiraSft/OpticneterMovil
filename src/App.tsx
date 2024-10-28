@@ -40,15 +40,17 @@ import Menu from './components/Menu';
 import Footer from './components/Footer';
 import IniciaSesion from './pages/IniciaSesión';
 import AgendaCita from './pages/AgendaCita';
-import Carrito from './pages/Carrito';
+import detalleCarrito from './pages/Carrito';
 import Productos from './pages/Productos';
 import RegistroU from './pages/RegistroU';
-
+import ProductsViewCart from './pages/productosViewCart';
 import RutaProtegida from './pages/RutaProtegida';
 import HomeAuth from './pages/Auth/Home'
 import DetalleProducto from './pages/Auth/detailProduct';
 import ProfileCard from './pages/Auth/perfilUser';
 import React from 'react';
+import tratamientos from './components/tratamientos';
+import Carrito from './pages/Carrito';
 
 
 
@@ -65,14 +67,18 @@ const App: React.FC = () => (
         <Route path="/IniciaSesion" component={IniciaSesion} exact />
         <Route path="/Productos" component={Productos} exact />
         <Route path="/RegistroU" component={RegistroU} exact /> 
+        <Route path="/ProductsViewCart"  component={ProductsViewCart} />
+        
+        <Route path="/Tratamiento"  component={tratamientos} />
         <Route path="/Productos/:id" component={DetalleProducto} /> 
+        
 
       {/**Rutas Protegidas */}
         <Route path="/AgendaCita" render={() => <RutaProtegida element={<AgendaCita />} />} />
-        <Route path="/Carrito" render={() => <RutaProtegida element={<Carrito />} />} />
+       {/**<Route path="/Carrito" render={() => <RutaProtegida element={<Carrito />} />} /> */} 
         <Route path="/HomeAuth" render={() => <RutaProtegida element={<HomeAuth />} />} />
         <Route path="/Perfil" render={() => <RutaProtegida element={<ProfileCard />} />} />
-  
+        <Route path="/detalleCarrito" render={() => <RutaProtegida element={<Carrito />} />} />
       </IonRouterOutlet>
      
       </IonSplitPane>
