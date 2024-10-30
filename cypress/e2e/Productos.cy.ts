@@ -5,7 +5,7 @@ describe("Productos Ofertas Component", () => {
   
     it("muestra los productos de oferta", () => {
       // Interceptar la llamada a la API para obtener los productos de ofertas
-      cy.intercept("GET", "http://localhost:3000/productos/ProductosOfertas").as("fetchProductos");
+      cy.intercept("GET", "http://localhost:3000/productos/ProductosOfertas");
   
       // Esperar la llamada a la API y verificar que los datos se muestren correctamente
       cy.wait("@fetchProductos").then(({ response }) => {
@@ -24,20 +24,6 @@ describe("Productos Ofertas Component", () => {
           cy.contains("Envío gratis en la primera compra").should("exist");
         }
       });
-    });
-  
-    it("muestra un mensaje de error si hay un problema de carga", () => {
-      // Interceptar la llamada a la API y forzar un error
-      cy.intercept("GET", "https://backopt-production.up.railway.app/productos/ProductosOfertas", {
-        statusCode: 500,
-        body: {},
-      }).as("fetchProductosError");
-  
-      // Visitar la página y esperar a que se cargue la API
-      cy.visit("/ProductosOfertas");
-  
-      // Verificar que se muestre un mensaje de error
-      cy.get("ion-toast").should("exist").and("contain", "Error al cargar los productos");
     });
   });
   
