@@ -12,6 +12,7 @@ interface Producto {
   Precio: number;
   IdCategoria: number;
   IdMarca: number;
+  PrecioOriginal: number;
   PrecioOferta: number;
   categoria: {
     NombreCategoria: string;
@@ -26,7 +27,7 @@ const ProductosOfertas: React.FC = () => {
   const [categorias, setCategorias] = useState<{ [key: number]: string }>({});
   const [marcas, setMarcas] = useState<{ [key: number]: string }>({});
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const fetchProductos = async () => {
@@ -34,7 +35,7 @@ const ProductosOfertas: React.FC = () => {
         const api = "https://backopt-production.up.railway.app/productos/ProductosOfertas";
         const response = await fetch(api, {});
         const data: Producto[] = await response.json();
-
+        if (!response.ok) throw new Error('Error de carga');
         const categoriasMap: { [key: number]: string } = {};
         const marcasMap: { [key: number]: string } = {};
 
@@ -47,7 +48,7 @@ const ProductosOfertas: React.FC = () => {
         setMarcas(marcasMap);
         setProductos(data);
       } catch (error) {
-        setError("Error al cargar los productos");
+        setError('Error al cargar los productos');
         console.error(error);
       } finally {
         setLoading(false);
@@ -56,6 +57,9 @@ const ProductosOfertas: React.FC = () => {
 
     fetchProductos();
   }, []);
+
+
+  
 
   return (
     <>
@@ -74,8 +78,8 @@ const ProductosOfertas: React.FC = () => {
                 <h2>{producto.vchNombreProducto}</h2>
                 <p>
                   {categorias[producto.IdCategoria] || "Sin categoría"} - {marcas[producto.IdMarca] || "Sin marca"}</p>
-                <p style={{ textDecoration: "line-through", color: "gray" }}>${producto.PrecioOferta}</p>
-                <h3 className="font-bold">${producto.Precio}</h3>
+                <p style={{ textDecoration: "line-through", color: "gray" }}>${producto.Precio}</p>
+                <h3 className="font-bold">${producto.PrecioOferta}</h3>
                 <p><span className="text-green-500 font-bold">Envío gratis</span> en la primera compra</p>
               </IonLabel>
             </IonItem>

@@ -11,10 +11,6 @@ const HomeAuth: React.FC = ()=> {
         <Header />
         <IonContent>
             <ImageCarousel />
-
-            <p >Has Iniciado sesion correctamente :)</p>
-
-            <CerrarSesion />
             <CategoriasCarrucel />
             <ProductosOfertas />
         </IonContent>

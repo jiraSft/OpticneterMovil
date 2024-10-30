@@ -18,7 +18,7 @@ describe('Pruebas del componente IniciaSesion', () => {
         <IniciaSesion />
       </Router>
     );
-
+    
     expect(screen.queryByText('Header')).toBeDefined();
     expect(screen.queryByText('Login')).toBeDefined();
 

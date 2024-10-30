@@ -3,6 +3,8 @@ import { IonApp, IonRouterOutlet, IonSplitPane, setupIonicReact } from '@ionic/r
 import { IonReactRouter } from '@ionic/react-router';
 import Home from './pages/Home';
 import './index.css'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 /* Core CSS required for Ionic components to work properly */
@@ -57,35 +59,38 @@ import Carrito from './pages/Carrito';
 setupIonicReact();
 
 const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonSplitPane contentId='main-content'>
-        <Menu />
-      <IonRouterOutlet id='main-content'>
-        <Redirect exact from='/' to="/Home" />
-        <Route path="/Home" component={Home} exact />
-        <Route path="/IniciaSesion" component={IniciaSesion} exact />
-        <Route path="/Productos" component={Productos} exact />
-        <Route path="/RegistroU" component={RegistroU} exact /> 
-        <Route path="/ProductsViewCart"  component={ProductsViewCart} />
-        
-        <Route path="/Tratamiento"  component={tratamientos} />
-        <Route path="/Productos/:id" component={DetalleProducto} /> 
-        
+  <>
+    <IonApp>
+      <IonReactRouter>
+        <IonSplitPane contentId='main-content'>
+          <Menu />
+        <IonRouterOutlet id='main-content'>
+          <Redirect exact from='/' to="/Home" />
+          <Route path="/Home" component={Home} exact />
+          <Route path="/IniciaSesion" component={IniciaSesion} exact />
+          <Route path="/Productos" component={Productos} exact />
+          <Route path="/RegistroU" component={RegistroU} exact /> 
+          <Route path="/ProductsViewCart"  component={ProductsViewCart} />
+          
+          <Route path="/Tratamiento"  component={tratamientos} />
+          <Route path="/Productos/:id" component={DetalleProducto} /> 
+          
 
-      {/**Rutas Protegidas */}
-        <Route path="/AgendaCita" render={() => <RutaProtegida element={<AgendaCita />} />} />
-       {/**<Route path="/Carrito" render={() => <RutaProtegida element={<Carrito />} />} /> */} 
-        <Route path="/HomeAuth" render={() => <RutaProtegida element={<HomeAuth />} />} />
-        <Route path="/Perfil" render={() => <RutaProtegida element={<ProfileCard />} />} />
-        <Route path="/detalleCarrito" render={() => <RutaProtegida element={<Carrito />} />} />
-      </IonRouterOutlet>
-     
-      </IonSplitPane>
+        {/**Rutas Protegidas */}
+          <Route path="/AgendaCita" render={() => <RutaProtegida element={<AgendaCita />} />} />
+        {/**<Route path="/Carrito" render={() => <RutaProtegida element={<Carrito />} />} /> */} 
+          <Route path="/HomeAuth" render={() => <RutaProtegida element={<HomeAuth />} />} />
+          <Route path="/Perfil" render={() => <RutaProtegida element={<ProfileCard />} />} />
+          <Route path="/Carrito" render={() => <RutaProtegida element={<Carrito />} />} />
+        </IonRouterOutlet>
       
-    </IonReactRouter>
-    
-  </IonApp>
+        </IonSplitPane>
+        
+      </IonReactRouter>
+      
+    </IonApp>
+    <ToastContainer />
+  </>
 );
 
 export default App;
