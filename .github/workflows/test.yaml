@@ -17,5 +17,10 @@ jobs:
       - name: Install dependencies
         run: npm install --legacy-peer-deps # Instalar dependencias
 
+      - name: Start application server
+        run: |
+          npm run start &
+          npx wait-on http://localhost:8100 # Espera hasta que el servidor esté listo
+
       - name: Run Cypress tests
-        run: npx cypress run   
+        run: npx cypress run
