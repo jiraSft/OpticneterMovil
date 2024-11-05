@@ -20,7 +20,7 @@ jobs:
       - name: Start application server
         run: |
           npm run start &
-          npx wait-on http://localhost:8100 # Espera hasta que el servidor esté listo
+          npx wait-on http://localhost:8100 
 
       - name: Run Cypress tests
         run: npx cypress run
