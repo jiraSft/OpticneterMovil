@@ -1,0 +1,29 @@
+name: Cypress CI
+
+on:
+  push:
+    branches:
+      - main         # Despliegue en producción   
+  pull_request:
+    branches:
+      - main                 
+  workflow_dispatch:   # Activación manual opcional
+
+jobs:
+  cypress:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2      # Clonar el repositorio
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'          
+
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps # Instalar dependencias
+
+      - name: Run Cypress tests
+        run: npx cypress run           # Ejecutar las pruebas de Cypress
+        

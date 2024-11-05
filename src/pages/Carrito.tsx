@@ -3,10 +3,9 @@ import React, { useState, useEffect } from "react";
 import Header from "../components/UI/header";
 import CerrarSesion from "./Auth/cerrarSesion";
 import { loadStripe } from '@stripe/stripe-js';
-import {toast} from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const stripePromise = loadStripe('pk_test_51QF7CwP4u0AspHWqVkcLHlGObKirereYBP7bQJOetZ3Bgv1HQDXfCaEQBWM8cv3kvJ69rNvjdOwsMw4nzqgSxGhN00ik1ViWMd');
-  
 
 function parseJwt(token: string) {
   var base64Url = token.split(".")[1];
@@ -75,7 +74,7 @@ const Carrito: React.FC = () => {
         body: JSON.stringify({
             line_items: detalleCarrito.map((detalle) => ({
                 price_data: {
-                    currency: 'MXM', // Cambia la moneda según tu necesidad
+                    currency: 'MXN', // Cambia la moneda según tu necesidad
                     product_data: {
                         name: detalle.producto.vchNombreProducto, // Nombre del producto
                     },
@@ -108,7 +107,6 @@ const Carrito: React.FC = () => {
   return (
     <IonPage id="main-content">
         <Header />  
-        <CerrarSesion />  
         <IonContent className="bg-gray-100">
             <div className="min-h-screen pt-20">
                 <h1 className="mb-10 text-center text-2xl font-bold">Carrito de compras</h1>
@@ -165,10 +163,11 @@ const Carrito: React.FC = () => {
                                 <div className="flex justify-between">
                                     <IonLabel className="text-lg font-bold">Total</IonLabel>
                                     <IonLabel className="mb-1 text-lg font-bold">${total}</IonLabel>
-                                </div>
-                                <IonButton onClick={handlePayment} expand="full" className="mt-6 mb-8 bg-blue-500">
+                                    <IonButton onClick={handlePayment} expand="full" className="mt-6 mb-8 bg-blue-500">
                                     Pagar
-                                </IonButton>
+                                    </IonButton>
+                                </div>
+                                
                             </IonCardContent>
                         </IonCard>
                     </div>
@@ -180,4 +179,3 @@ const Carrito: React.FC = () => {
 };
 
 export default Carrito;
-

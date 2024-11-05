@@ -34,14 +34,14 @@ const Home: React.FC = () => {
           
           <ProductosOfertas />
           
-          <IonCard className='p-2'>
+          <IonCard >
             <IonLabel>
-              <h2 className="font-bold text-black text-2xl">¿Necesitas ayuda?</h2>
+              <h2 >¿Necesitas ayuda?</h2>
             </IonLabel>
             <IonList>
               <IonItem>
                 <IonRouterLink>
-                <IonLabel className='text-black'>Terminos y condiciones</IonLabel>
+                <IonLabel className=''>Terminos y condiciones</IonLabel>
                 </IonRouterLink>
               </IonItem>
               <IonItem>

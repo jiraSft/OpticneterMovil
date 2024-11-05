@@ -1,29 +1,34 @@
-describe("Productos Ofertas Component", () => {
+describe('Home Page Interface Test', () => {
     beforeEach(() => {
-      cy.visit("/ProductosOfertas"); // Cambia esta ruta para que coincida con tu aplicación
+      cy.visit('/Home') // Asegúrate de que la URL base esté configurada en cypress.config.js
     });
   
-    it("muestra los productos de oferta", () => {
-      // Interceptar la llamada a la API para obtener los productos de ofertas
-      cy.intercept("GET", "http://localhost:3000/productos/ProductosOfertas");
+    it('should display the header', () => {
+      cy.get('ion-header').should('exist'); // Comprueba que el encabezado esté presente
+    });
   
-      // Esperar la llamada a la API y verificar que los datos se muestren correctamente
-      cy.wait("@fetchProductos").then(({ response }) => {
-        if (response && response.body) {
-          const productos = response.body;
+    it('should show the "Crear cuenta" button and navigate on click', () => {
+      cy.contains('Crear cuenta').should('be.visible').click();
+      cy.url().should('include', '/Crearcuenta'); // Verifica que el enlace funcione
+    });
   
-          // Validar que cada producto se muestre en la lista
-          productos.forEach((producto: { IdProducto: number; vchNombreProducto: string; vchNomImagen: string; Precio: number; PrecioOferta: number; }) => {
-            cy.contains(producto.vchNombreProducto).should("exist"); // Comprobar que el nombre del producto está presente
-            cy.get(`img[alt="${producto.vchNombreProducto}"]`).should("have.attr", "src", producto.vchNomImagen); // Verificar que la imagen es correcta
-            cy.contains(`$${producto.Precio}`).should("exist"); // Comprobar el precio original
-            cy.contains(`$${producto.PrecioOferta}`).should("exist"); // Comprobar el precio de oferta
-          });
+    it('should show "Ingresar a mi cuenta" link and navigate on click', () => {
+      cy.contains('Ingresar a mi cuenta').should('be.visible').click();
+      cy.url().should('include', '/IniciaSesion'); // Comprueba la navegación
+    });
   
-          // Verificar que el mensaje de envío gratuito esté presente
-          cy.contains("Envío gratis en la primera compra").should("exist");
-        }
-      });
+    it('should render the image carousel', () => {
+      cy.get('ion-card').find('ion-img').should('exist'); // Verifica la presencia de imágenes del carrusel
+    });
+  
+    it('should display product offers section', () => {
+        cy.get('#productosOfertas').should('exist');
+    });
+  
+    it('should show help section links', () => {
+      cy.contains('¿Necesitas ayuda?').should('exist');
+      cy.contains('Terminos y condiciones').should('exist');
+      cy.contains('Conocer más').should('exist');
     });
   });
   
