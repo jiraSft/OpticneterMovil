@@ -71,7 +71,7 @@ const ProductosVista: React.FC = () => {
 
       <h1 className="text-2xl font-bold text-center mb-3">Productos</h1>
 
-      <div className="grid grid-cols-2 sm:grid-cols-1 md:grid-cols-1">
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1">
         {productos.map((producto) => (
           <IonCard key={producto.IdProducto} className="w-auto mx-4 my-2 p-4 items-center justify-center">
             <IonImg className=" mx-auto" src={producto.vchNomImagen} alt={producto.vchNombreProducto} />

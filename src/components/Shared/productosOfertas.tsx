@@ -69,7 +69,7 @@ const ProductosOfertas: React.FC = () => {
     {/** {loading && <IonLoading isOpen={loading} message={"Cargando productos..."} />}
       {error && <IonToast isOpen={true} message={error} duration={3000} color="danger" />}
  */} 
-      <div className="grid grid-cols-2 sm:grid-cols-1 md:grid-cols-1">
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1">
         {productos.map((producto) => (
           <IonCard key={producto.IdProducto} className="w-auto mx-4 my-2 p-4 items-center justify-center">
             <IonImg className=" mx-7 h-32" src={producto.vchNomImagen} alt={producto.vchNombreProducto} />
