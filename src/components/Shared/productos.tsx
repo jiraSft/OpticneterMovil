@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { IonContent, IonToast, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonImg, IonLoading, IonButton } from "@ionic/react";
+import {IonContent,IonToast,IonCard,  IonCardHeader,  IonCardTitle,  IonCardSubtitle,  IonCardContent,IonImg,  IonLoading,  IonButton,} from "@ionic/react";
 
 interface Producto {
   IdProducto: number;
@@ -28,41 +28,43 @@ const ProductosVista: React.FC = () => {
   useEffect(() => {
     const fetchProductos = async () => {
       try {
-        const response = await fetch("http://localhost:3000/productos/Productos", {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
+        const api = "https://backopt-production.up.railway.app/productos/Productos";
+        const response = await fetch(api, {});
+    
         if (!response.ok) {
           throw new Error("Error al obtener los productos");
         }
-  
-        const data: Producto[] = await response.json();
-        console.log(data); // Verifica la estructura de la respuesta
-  
-        const categoriasMap: { [key: number]: string } = {};
-        const marcasMap: { [key: number]: string } = {};
-  
-        data.forEach((producto) => {
-          categoriasMap[producto.IdCategoria] = producto.categoria?.NombreCategoria || "Sin categoría";
-          marcasMap[producto.IdMarca] = producto.marca?.NombreMarca || "Sin marca";
-        });
-  
-        setCategorias(categoriasMap);
-        setMarcas(marcasMap);
-        setProductos(data);
+    
+        const contentType = response.headers.get("content-type");
+        if (contentType && contentType.includes("application/json")) {
+          
+          const data: Producto[] = await response.json();
+          console.log("Data:", data);
+    
+          const categoriasMap: { [key: number]: string } = {};
+          const marcasMap: { [key: number]: string } = {};
+    
+          data.forEach((producto) => {
+            categoriasMap[producto.IdCategoria] = producto.categoria?.NombreCategoria || "Sin categoría";
+            marcasMap[producto.IdMarca] = producto.marca?.NombreMarca || "Sin marca";
+          });
+    
+          setCategorias(categoriasMap);
+          setMarcas(marcasMap);
+          setProductos(data);
+        } else {
+          throw new Error("La respuesta no es JSON");
+        }
       } catch (error) {
         setError("Error al cargar los productos");
-        console.error(error);
+        console.error("Error al cargar los productos:", error);
       } finally {
         setLoading(false);
       }
     };
-  
+    
     fetchProductos();
   }, []);
-  
 
   return (
     <IonContent className="p-3">
@@ -74,7 +76,7 @@ const ProductosVista: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1">
         {productos.map((producto) => (
           <IonCard key={producto.IdProducto} className="w-auto mx-4 my-2 p-4 items-center justify-center">
-            <IonImg className=" mx-auto" src={producto.vchNomImagen} alt={producto.vchNombreProducto} />
+            <IonImg className="mx-auto" src={producto.vchNomImagen} alt={producto.vchNombreProducto} />
             <IonCardHeader className="text-center">
               <IonCardTitle className="font-bold">{producto.vchNombreProducto}</IonCardTitle>
               <IonCardSubtitle>
@@ -82,12 +84,9 @@ const ProductosVista: React.FC = () => {
               </IonCardSubtitle>
             </IonCardHeader>
             <IonCardContent>
-            {/**  <p>{producto.vchDescripcion}</p>   */} 
-             {/** <p>Existencias: {producto.Existencias}</p>  */} 
-           {/**   <p>Precio: {producto.Precio}</p>  */} 
               <div className="flex justify-between mt-4">
                 {/* Botones para realizar acciones, ir a detalles, etc. */}
-                <IonButton routerLink="/IniciaSesion" className=""> Detalles</IonButton>
+                <IonButton routerLink={`/productos/${producto.IdProducto}`} className="bg-blue-600 text-white hover:bg-blue-800">Detalles</IonButton>
               </div>
             </IonCardContent>
           </IonCard>

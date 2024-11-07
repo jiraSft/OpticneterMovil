@@ -1,22 +1,19 @@
 import React, { createContext, useState, useContext, ReactNode } from "react";
 import { IonToast } from "@ionic/react";
 
-// Creación del contexto con un valor predeterminado
 export const AuthContext = createContext({
   isAuthenticated: false,
   login: () => {},
   logout: () => {}
 });
 
-// Define el tipo de las props del AuthProvider
 interface AuthProviderProps {
   children: ReactNode;
 }
 
-// Proveedor del contexto
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
-    return !!localStorage.getItem('token'); // Verifica si hay un token en localStorage
+    return !!localStorage.getItem('token'); 
   });
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
@@ -29,7 +26,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const logout = () => {
     setIsAuthenticated(false);
-    localStorage.removeItem('token'); // Elimina el token al cerrar sesión
+    localStorage.removeItem('token'); 
     setToastMessage("Sesión cerrada correctamente");
     setShowToast(true);
   };
@@ -48,5 +45,4 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   );
 };
 
-// Hook personalizado para usar el contexto
 export const useAuth = () => useContext(AuthContext);
